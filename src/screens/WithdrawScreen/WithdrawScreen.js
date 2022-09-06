@@ -11,12 +11,12 @@ import {
   InputView,
 } from "./styles";
 
-export default function NewDeposityScreen() {
+export default function WithdrawScreen() {
   const navigate = useNavigate();
 
   return (
     <Container>
-      <Tittle>Nova entrada</Tittle>
+      <Tittle>Nova saída</Tittle>
       <InputView>
         <InputContainer placeholder="Valor" />
         <InputContainer placeholder="Descrição" />
@@ -25,7 +25,7 @@ export default function NewDeposityScreen() {
             navigate("/home");
           }}
         >
-          Salvar entrada
+          Salvar saída
         </Button>
       </InputView>
     </Container>
