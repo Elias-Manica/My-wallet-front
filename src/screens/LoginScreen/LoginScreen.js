@@ -12,7 +12,13 @@ export default function LoginScreen() {
       <Tittle>My wallet</Tittle>
       <InputContainer placeholder="E-mail" />
       <InputContainer placeholder="Senha" />
-      <Button>Entrar</Button>
+      <Button
+        onClick={() => {
+          navigate("/home");
+        }}
+      >
+        Entrar
+      </Button>
       <Text
         onClick={() => {
           navigate("/cadastro");

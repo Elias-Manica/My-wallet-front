@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginScreen from "./LoginScreen/LoginScreen";
 import SingUpScreen from "./SingUpScreen/SingUpScreen";
+import HomeScreen from "./HomeScreen/HomeScreen";
+
 import { GlobalStyle } from "../assets/css/GlobalStyle";
 
 export default function App() {
@@ -14,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginScreen />} />
           <Route path="/cadastro" element={<SingUpScreen />} />
+          <Route path="/home" element={<HomeScreen />} />
         </Routes>
       </BrowserRouter>
     </>
