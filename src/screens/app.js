@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginScreen from "./LoginScreen/LoginScreen";
 import SingUpScreen from "./SingUpScreen/SingUpScreen";
 import HomeScreen from "./HomeScreen/HomeScreen";
+import NewDeposityScreen from "./NewDeposityScreen/NewDeposityScreen";
 
 import { GlobalStyle } from "../assets/css/GlobalStyle";
 
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/" element={<LoginScreen />} />
           <Route path="/cadastro" element={<SingUpScreen />} />
           <Route path="/home" element={<HomeScreen />} />
+          <Route path="/deposito" element={<NewDeposityScreen />} />
         </Routes>
       </BrowserRouter>
     </>
