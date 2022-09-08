@@ -32,6 +32,7 @@ export const Header = styled.div`
 export const Icon = styled.div`
   color: white;
   font-size: 30px;
+  cursor: pointer;
 `;
 
 export const BoxHistoryEmpty = styled.div`
@@ -44,6 +45,7 @@ export const BoxHistoryEmpty = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   p {
     font-family: "Raleway";
     font-style: normal;
@@ -54,6 +56,38 @@ export const BoxHistoryEmpty = styled.div`
     width: 80%;
     color: #868686;
   }
+`;
+
+export const BoxHistoryDontEmpty = styled.div`
+  height: 68%;
+  width: 90%;
+  background: #ffffff;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  position: relative;
+  p {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    width: 80%;
+    color: #868686;
+  }
+`;
+
+export const TextBank = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ButtonContainer = styled.div`
@@ -89,4 +123,95 @@ export const Button = styled.button`
     justify-content: flex-end;
     width: 30px;
   }
+`;
+
+export const Text = styled.text`
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  margin-right: 8px;
+  color: #000000;
+  width: 50%;
+`;
+
+export const DateText = styled.text`
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  margin-right: 8px;
+  color: #c6c6c6;
+`;
+
+export const DeposityText = styled.text`
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-justify: inter-word;
+  color: #c70000;
+  margin-right: 15px;
+`;
+
+export const WithdrawText = styled.text`
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  margin-right: 15px;
+  color: #03ac00;
+`;
+
+export const TittleDescription = styled.div`
+  width: 70%;
+`;
+
+export const BalanceContainer = styled.div`
+  height: 30px;
+  width: 90%;
+
+  h1 {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 31px;
+    color: #ffffff;
+    margin-left: 5.5%;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+  }
+  h2 {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    width: 80%;
+    color: #868686;
+  }
+`;
+
+export const ShowBalance = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ShowIcon = styled.div`
+  color: white;
+  font-size: 20px;
+`;
+
+export const HiddenBalance = styled.div`
+  width: 70px;
+  height: 20px;
+  background-color: #c6c6c6;
+  margin-left: 10px;
 `;
