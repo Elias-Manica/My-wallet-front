@@ -37,6 +37,7 @@ let messages = [
 ];
 
 export default function HomeScreen() {
+  const [showBalance, setShowBalance] = React.useState(false);
   const navigate = useNavigate();
 
   return (
@@ -52,9 +53,22 @@ export default function HomeScreen() {
           <BalanceContainer>
             <h1>Saldo disponível:</h1>
             <ShowBalance>
-              <h1>R$ {<HiddenBalance></HiddenBalance>}</h1>
-              <ShowIcon>
-                <ion-icon name="eye-outline"></ion-icon>
+              {showBalance ? (
+                <h1>R$ {balance[0].balance}</h1>
+              ) : (
+                <h1>R$ {<HiddenBalance></HiddenBalance>}</h1>
+              )}
+
+              <ShowIcon
+                onClick={() => {
+                  setShowBalance(!showBalance);
+                }}
+              >
+                {showBalance ? (
+                  <ion-icon name="eye-off-outline"></ion-icon>
+                ) : (
+                  <ion-icon name="eye-outline"></ion-icon>
+                )}
               </ShowIcon>
             </ShowBalance>
           </BalanceContainer>

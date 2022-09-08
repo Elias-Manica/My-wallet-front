@@ -211,7 +211,8 @@ export const ShowIcon = styled.div`
 
 export const HiddenBalance = styled.div`
   width: 70px;
-  height: 20px;
+  height: 15px;
   background-color: #c6c6c6;
   margin-left: 10px;
+  border-radius: 5px;
 `;
