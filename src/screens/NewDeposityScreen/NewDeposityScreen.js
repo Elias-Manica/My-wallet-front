@@ -79,7 +79,7 @@ export default function NewDeposityScreen() {
           {loading ? (
             <ThreeDots color="white" height={40} width={40} />
           ) : (
-            "Entrar"
+            "Nova entrada"
           )}
         </Button>
       </InputView>

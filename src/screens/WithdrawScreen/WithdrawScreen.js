@@ -1,6 +1,12 @@
 import React from "react";
 
+import TokenAuth from "../../contexts/tokenContext";
+
+import { postWithDrawn } from "../../services/requests";
+
 import { useNavigate } from "react-router-dom";
+
+import { ThreeDots } from "react-loader-spinner";
 
 import {
   Container,
@@ -12,20 +18,69 @@ import {
 } from "./styles";
 
 export default function WithdrawScreen() {
+  const [loading, setLoading] = React.useState(false);
+  const [value, setValue] = React.useState("");
+  const [description, setDescription] = React.useState("");
+
+  const { token } = React.useContext(TokenAuth);
+
   const navigate = useNavigate();
+
+  async function createDeposity() {
+    setLoading(true);
+    const body = {
+      value,
+      description,
+      type: "withdraw",
+    };
+
+    try {
+      let response = await postWithDrawn(body, token);
+      console.log(response);
+      setLoading(false);
+      navigate("/home");
+    } catch (error) {
+      if (error.response.data.length > 0) {
+        alert(`${error.response.data}`);
+        setLoading(false);
+        return;
+      }
+      alert(`${error.response.data.message}`);
+      setLoading(false);
+      alert("Requisição errada, tente mais tarde");
+    }
+  }
 
   return (
     <Container>
       <Tittle>Nova saída</Tittle>
       <InputView>
-        <InputContainer placeholder="Valor" />
-        <InputContainer placeholder="Descrição" />
+        <InputContainer
+          placeholder="Valor"
+          disabled={loading ? true : false}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          required
+          color={loading ? "#F2F2F2" : "#FFFFFF"}
+        />
+        <InputContainer
+          placeholder="Descrição"
+          disabled={loading ? true : false}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+          color={loading ? "#F2F2F2" : "#FFFFFF"}
+        />
         <Button
           onClick={() => {
-            navigate("/home");
+            createDeposity();
           }}
         >
-          Salvar saída
+          {loading ? (
+            <ThreeDots color="white" height={40} width={40} />
+          ) : (
+            "Nova saída"
+          )}
         </Button>
       </InputView>
     </Container>
