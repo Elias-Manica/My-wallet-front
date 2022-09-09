@@ -2,8 +2,8 @@ import axios from "axios";
 
 const Base_URL = "http://localhost:5000";
 
-function login(body) {
-  const promise = axios.post(`${Base_URL}/login`, body);
+async function login(body) {
+  const promise = await axios.post(`${Base_URL}/login`, body);
   return promise;
 }
 

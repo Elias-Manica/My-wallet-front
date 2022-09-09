@@ -25,6 +25,8 @@ export const InputContainer = styled.input`
   background: #ffffff;
   border-radius: 5px;
   padding-left: 15px;
+  margin-left: auto;
+  margin-right: auto;
   &::placeholder {
     font-family: "Raleway";
     font-style: normal;
@@ -52,6 +54,8 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Text = styled.h2`
@@ -63,4 +67,13 @@ export const Text = styled.h2`
   margin-top: 40px;
   cursor: pointer;
   color: #ffffff;
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;

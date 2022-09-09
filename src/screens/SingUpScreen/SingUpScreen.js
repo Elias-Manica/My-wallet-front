@@ -5,7 +5,14 @@ import { singUp } from "../../services/requests";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
-import { Container, Tittle, InputContainer, Button, Text } from "./styles";
+import {
+  Container,
+  Tittle,
+  InputContainer,
+  Button,
+  Text,
+  Form,
+} from "./styles";
 
 export default function SingUpScreen() {
   const [name, setName] = React.useState("");
@@ -22,6 +29,11 @@ export default function SingUpScreen() {
 
     if (password !== confirmPass) {
       alert("Senhas diferentes");
+      setLoading(false);
+      setEmail("");
+      setConfirmPass("");
+      setName("");
+      setPassword("");
       return;
     }
 
@@ -30,19 +42,30 @@ export default function SingUpScreen() {
       alert(`${response.data.message}`);
       navigate("/");
     } catch (error) {
+      if (error.response.data.length > 0) {
+        //lembrar de passar para portugues ou colocar joi direto nos inputs
+        alert(`${error.response.data}`);
+        setLoading(false);
+        setEmail("");
+        setConfirmPass("");
+        setName("");
+        setPassword("");
+        return;
+      }
       alert(`${error.response.data.message}`);
       setLoading(false);
       setEmail("");
       setConfirmPass("");
       setName("");
       setPassword("");
+      console.log(error);
     }
   }
 
   return (
     <Container>
       <Tittle>My wallet</Tittle>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <InputContainer
           placeholder="Nome"
           disabled={loading ? true : false}
@@ -85,7 +108,7 @@ export default function SingUpScreen() {
             "Entrar"
           )}
         </Button>
-      </form>
+      </Form>
       <Text
         onClick={() => {
           navigate("/");
