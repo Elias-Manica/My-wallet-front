@@ -56,6 +56,19 @@ async function postWithDrawn(body, token) {
   return promise;
 }
 
+async function singOut(token) {
+  const body = {};
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const promise = await axios.post(`${Base_URL}/sing-out`, body, config);
+  return promise;
+}
+
 export {
   login,
   singUp,
@@ -63,4 +76,5 @@ export {
   getTransitionUser,
   postTransition,
   postWithDrawn,
+  singOut,
 };

@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 import NameAuth from "../../contexts/nameContext";
 import TokenAuth from "../../contexts/tokenContext";
 
-import { getBalanceUser, getTransitionUser } from "../../services/requests";
+import {
+  getBalanceUser,
+  getTransitionUser,
+  singOut,
+} from "../../services/requests";
 
 import {
   Container,
@@ -61,6 +65,18 @@ export default function HomeScreen() {
     }
   }
 
+  async function functionsingOut() {
+    try {
+      let response = await singOut(token);
+      console.log(response);
+      localStorage.removeItem("mywallet");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      alert(`${error.response.data.message}`);
+    }
+  }
+
   useEffect(() => {
     getBalance();
     getTransition();
@@ -70,7 +86,13 @@ export default function HomeScreen() {
     <Container>
       <Header>
         <NameUserContainer>Olá, {nameUser}!</NameUserContainer>
-        <Icon>
+        <Icon
+          onClick={() => {
+            if (window.confirm("Você realmente quer sair?")) {
+              functionsingOut();
+            }
+          }}
+        >
           <ion-icon name="exit-outline"></ion-icon>
         </Icon>
       </Header>
