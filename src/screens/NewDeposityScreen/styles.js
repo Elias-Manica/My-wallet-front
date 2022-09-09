@@ -72,3 +72,12 @@ export const Text = styled.h2`
   cursor: pointer;
   color: #ffffff;
 `;
+
+export const Form = styled.form`
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;

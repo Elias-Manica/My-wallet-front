@@ -34,4 +34,15 @@ async function getTransitionUser(token) {
   return promise;
 }
 
-export { login, singUp, getBalanceUser, getTransitionUser };
+async function postTransition(body, token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const promise = await axios.post(`${Base_URL}/transition`, body, config);
+  return promise;
+}
+
+export { login, singUp, getBalanceUser, getTransitionUser, postTransition };
