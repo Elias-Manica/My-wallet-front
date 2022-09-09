@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import NameAuth from "../../contexts/nameContext";
+import TokenAuth from "../../contexts/tokenContext";
+
+import { getBalanceUser } from "../../services/requests";
+
 import {
   Container,
-  NameUser,
   Header,
   Icon,
   BoxHistoryEmpty,
@@ -21,6 +25,7 @@ import {
   ShowBalance,
   ShowIcon,
   HiddenBalance,
+  NameUserContainer,
 } from "./styles";
 
 let balance = [{ balance: 10 }];
@@ -38,12 +43,33 @@ let messages = [
 
 export default function HomeScreen() {
   const [showBalance, setShowBalance] = React.useState(false);
+  const [balanceUser, setBalanceUser] = React.useState("");
+
+  const { nameUser, setNameUser } = React.useContext(NameAuth);
+  const { token } = React.useContext(TokenAuth);
+
   const navigate = useNavigate();
+
+  async function getBalance() {
+    try {
+      let response = await getBalanceUser(token);
+      setNameUser(response.data.name);
+      setBalanceUser(response.data.balance);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      alert("Requisição errada, tente mais tarde");
+    }
+  }
+
+  useEffect(() => {
+    getBalance();
+  }, []);
 
   return (
     <Container>
       <Header>
-        <NameUser>Olá, Fulano!</NameUser>
+        <NameUserContainer>Olá, {nameUser}!</NameUserContainer>
         <Icon>
           <ion-icon name="exit-outline"></ion-icon>
         </Icon>
@@ -54,7 +80,7 @@ export default function HomeScreen() {
             <h1>Saldo disponível:</h1>
             <ShowBalance>
               {showBalance ? (
-                <h1>R$ {balance[0].balance}</h1>
+                <h1>R$ {balanceUser}</h1>
               ) : (
                 <h1>R$ {<HiddenBalance></HiddenBalance>}</h1>
               )}

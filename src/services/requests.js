@@ -12,4 +12,15 @@ async function singUp(body) {
   return promise;
 }
 
-export { login, singUp };
+async function getBalanceUser(token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const promise = await axios.get(`${Base_URL}/balance`, config);
+  return promise;
+}
+
+export { login, singUp, getBalanceUser };

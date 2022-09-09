@@ -18,6 +18,7 @@ export default function PrivatePage({ children }) {
     return (
       <>
         <h1>SEM ACESSO</h1>
+        <button onClick={() => navigate("/")}></button>
       </>
     );
   }

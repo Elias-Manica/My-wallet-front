@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import TokenAuth from "../contexts/tokenContext";
+import NameAuth from "../contexts/nameContext";
 
 import PrivatePage from "../services/privatePage";
 
@@ -16,27 +17,30 @@ import { GlobalStyle } from "../assets/css/GlobalStyle";
 
 export default function App() {
   const [token, setToken] = React.useState("");
+  const [nameUser, setNameUser] = React.useState("");
 
   return (
     <>
       <TokenAuth.Provider value={{ token, setToken }}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LoginScreen />} />
-            <Route path="/cadastro" element={<SingUpScreen />} />
-            <Route
-              path="/home"
-              element={
-                <PrivatePage>
-                  <HomeScreen />
-                </PrivatePage>
-              }
-            />
-            <Route path="/deposito" element={<NewDeposityScreen />} />
-            <Route path="/saque" element={<WithdrawScreen />} />
-          </Routes>
-        </BrowserRouter>
+        <NameAuth.Provider value={{ nameUser, setNameUser }}>
+          <GlobalStyle />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<LoginScreen />} />
+              <Route path="/cadastro" element={<SingUpScreen />} />
+              <Route
+                path="/home"
+                element={
+                  <PrivatePage>
+                    <HomeScreen />
+                  </PrivatePage>
+                }
+              />
+              <Route path="/deposito" element={<NewDeposityScreen />} />
+              <Route path="/saque" element={<WithdrawScreen />} />
+            </Routes>
+          </BrowserRouter>
+        </NameAuth.Provider>
       </TokenAuth.Provider>
     </>
   );

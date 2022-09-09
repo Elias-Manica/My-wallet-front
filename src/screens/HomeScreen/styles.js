@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const NameUser = styled.h1`
+export const NameUserContainer = styled.h1`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 700;
