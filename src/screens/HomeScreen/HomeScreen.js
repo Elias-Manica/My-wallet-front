@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NameAuth from "../../contexts/nameContext";
 import TokenAuth from "../../contexts/tokenContext";
 
-import { getBalanceUser } from "../../services/requests";
+import { getBalanceUser, getTransitionUser } from "../../services/requests";
 
 import {
   Container,
@@ -44,6 +44,7 @@ let messages = [
 export default function HomeScreen() {
   const [showBalance, setShowBalance] = React.useState(false);
   const [balanceUser, setBalanceUser] = React.useState("");
+  const [transitionUser, setTransitionUser] = React.useState([]);
 
   const { nameUser, setNameUser } = React.useContext(NameAuth);
   const { token } = React.useContext(TokenAuth);
@@ -62,8 +63,20 @@ export default function HomeScreen() {
     }
   }
 
+  async function getTransition() {
+    try {
+      let response = await getTransitionUser(token);
+      setTransitionUser(response.data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      alert("Problema ao pegar suas transações, tente mais tarde");
+    }
+  }
+
   useEffect(() => {
     getBalance();
+    getTransition();
   }, []);
 
   return (
@@ -74,7 +87,7 @@ export default function HomeScreen() {
           <ion-icon name="exit-outline"></ion-icon>
         </Icon>
       </Header>
-      {messages.length > 0 ? (
+      {transitionUser.length > 0 ? (
         <>
           <BalanceContainer>
             <h1>Saldo disponível:</h1>
@@ -99,16 +112,16 @@ export default function HomeScreen() {
             </ShowBalance>
           </BalanceContainer>
           <BoxHistoryDontEmpty>
-            {messages.map((item) => (
+            {transitionUser.map((item) => (
               <TextBank>
                 <TittleDescription>
                   <DateText>{item.date}</DateText>
                   <Text>{item.description}</Text>
                 </TittleDescription>
-                {item.type === "deposity" ? (
-                  <DeposityText>R$ 39</DeposityText>
+                {item.type === "withdraw" ? (
+                  <DeposityText>R$ {item.value}</DeposityText>
                 ) : (
-                  <WithdrawText>R$ 39</WithdrawText>
+                  <WithdrawText>R$ {item.value}</WithdrawText>
                 )}
               </TextBank>
             ))}

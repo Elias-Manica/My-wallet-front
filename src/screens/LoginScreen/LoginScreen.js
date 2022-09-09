@@ -31,7 +31,6 @@ export default function LoginScreen() {
 
     try {
       let response = await login({ email, password });
-      console.log(response);
       localStorage.setItem(
         "mywallet",
         JSON.stringify({ token: `${response.data.token}` })
@@ -51,7 +50,6 @@ export default function LoginScreen() {
       setEmail("");
 
       setPassword("");
-      console.log(error);
     }
   }
 
