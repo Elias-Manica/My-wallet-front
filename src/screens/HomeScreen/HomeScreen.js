@@ -56,9 +56,7 @@ export default function HomeScreen() {
       let response = await getBalanceUser(token);
       setNameUser(response.data.name);
       setBalanceUser(response.data.balance);
-      console.log(response);
     } catch (error) {
-      console.log(error);
       alert("Requisição errada, tente mais tarde");
     }
   }
@@ -67,35 +65,30 @@ export default function HomeScreen() {
     try {
       let response = await getTransitionUser(token);
       setTransitionUser(response.data);
-      console.log(response);
     } catch (error) {
-      console.log(error);
       alert("Problema ao pegar suas transações, tente mais tarde");
     }
   }
 
   async function functionsingOut() {
     try {
-      let response = await singOut(token);
-      console.log(response);
+      await singOut(token);
+
       localStorage.removeItem("mywallet");
       navigate("/");
     } catch (error) {
-      console.log(error);
       alert(`${error.response.data.message}`);
     }
   }
 
   async function deleteTransitionFunction(id) {
-    console.log(token);
     try {
-      let response = await deleteTransition(id, token);
-      console.log(response);
+      await deleteTransition(id, token);
+
       getBalance();
       getTransition();
       alert("Transição deletada");
     } catch (error) {
-      console.log(error);
       alert(`${error.response.data.message}`);
     }
   }

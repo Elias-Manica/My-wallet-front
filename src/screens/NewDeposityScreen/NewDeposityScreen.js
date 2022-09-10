@@ -8,14 +8,7 @@ import { postTransition } from "../../services/requests";
 
 import { ThreeDots } from "react-loader-spinner";
 
-import {
-  Container,
-  Tittle,
-  InputContainer,
-  Button,
-  Text,
-  InputView,
-} from "./styles";
+import { Container, Tittle, InputContainer, Button, InputView } from "./styles";
 
 export default function NewDeposityScreen() {
   const [loading, setLoading] = React.useState(false);
@@ -35,8 +28,8 @@ export default function NewDeposityScreen() {
     };
 
     try {
-      let response = await postTransition(body, token);
-      console.log(response);
+      await postTransition(body, token);
+
       setLoading(false);
       navigate("/home");
     } catch (error) {

@@ -7,8 +7,6 @@ import TokenAuth from "../contexts/tokenContext";
 export default function PrivatePage({ children }) {
   const auth = JSON.parse(localStorage.getItem("mywallet"));
   const { token } = useContext(TokenAuth);
-  console.log(token, "token");
-  console.log(auth, "storage");
 
   const navigate = useNavigate();
 

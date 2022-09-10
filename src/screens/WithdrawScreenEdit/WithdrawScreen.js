@@ -5,20 +5,13 @@ import ValueAuth from "../../contexts/valueTransitionEdit";
 import DescriptionAuth from "../../contexts/descriptionTransitionEdit";
 import IdAuth from "../../contexts/idTransitionEdit";
 
-import { postWithDrawn } from "../../services/requests";
+import { editTransition } from "../../services/requests";
 
 import { useNavigate } from "react-router-dom";
 
 import { ThreeDots } from "react-loader-spinner";
 
-import {
-  Container,
-  Tittle,
-  InputContainer,
-  Button,
-  Text,
-  InputView,
-} from "./styles";
+import { Container, Tittle, InputContainer, Button, InputView } from "./styles";
 
 export default function WithdrawScreenEdit() {
   const [loading, setLoading] = React.useState(false);
@@ -32,17 +25,18 @@ export default function WithdrawScreenEdit() {
 
   const navigate = useNavigate();
 
-  async function createDeposity() {
+  async function editDeposity() {
     setLoading(true);
-    const body = {
-      value,
-      description,
-      type: "withdraw",
-    };
+
+    if (valueEdit === value && descriptionEdit === description) {
+      alert("Nenhuma informação foi modificada");
+      setLoading(false);
+      return;
+    }
 
     try {
-      let response = await postWithDrawn(body, token);
-      console.log(response);
+      await editTransition(idEdit, value, description, token);
+
       setLoading(false);
       navigate("/home");
     } catch (error) {
@@ -60,7 +54,7 @@ export default function WithdrawScreenEdit() {
   useEffect(() => {
     setValue(valueEdit);
     setDescription(descriptionEdit);
-  }, []);
+  }, [valueEdit, descriptionEdit]);
 
   return (
     <Container>
@@ -84,7 +78,7 @@ export default function WithdrawScreenEdit() {
         />
         <Button
           onClick={() => {
-            createDeposity();
+            editDeposity();
           }}
         >
           {loading ? (

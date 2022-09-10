@@ -81,6 +81,23 @@ async function deleteTransition(idTransition, token) {
   return promise;
 }
 
+async function editTransition(idTransition, valueEdit, descriptionEdit, token) {
+  const body = {
+    id: idTransition,
+    value: valueEdit,
+    description: descriptionEdit,
+  };
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const promise = await axios.put(`${Base_URL}/transition`, body, config);
+  return promise;
+}
+
 export {
   login,
   singUp,
@@ -90,4 +107,5 @@ export {
   postWithDrawn,
   singOut,
   deleteTransition,
+  editTransition,
 };

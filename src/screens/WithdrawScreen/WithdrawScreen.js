@@ -8,14 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ThreeDots } from "react-loader-spinner";
 
-import {
-  Container,
-  Tittle,
-  InputContainer,
-  Button,
-  Text,
-  InputView,
-} from "./styles";
+import { Container, Tittle, InputContainer, Button, InputView } from "./styles";
 
 export default function WithdrawScreen() {
   const [loading, setLoading] = React.useState(false);
@@ -35,8 +28,8 @@ export default function WithdrawScreen() {
     };
 
     try {
-      let response = await postWithDrawn(body, token);
-      console.log(response);
+      await postWithDrawn(body, token);
+
       setLoading(false);
       navigate("/home");
     } catch (error) {

@@ -58,7 +58,6 @@ export default function SingUpScreen() {
       setConfirmPass("");
       setName("");
       setPassword("");
-      console.log(error);
     }
   }
 

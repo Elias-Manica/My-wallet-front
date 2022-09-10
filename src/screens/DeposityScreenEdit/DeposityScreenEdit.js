@@ -7,18 +7,11 @@ import ValueAuth from "../../contexts/valueTransitionEdit";
 import DescriptionAuth from "../../contexts/descriptionTransitionEdit";
 import IdAuth from "../../contexts/idTransitionEdit";
 
-import { postTransition } from "../../services/requests";
+import { editTransition } from "../../services/requests";
 
 import { ThreeDots } from "react-loader-spinner";
 
-import {
-  Container,
-  Tittle,
-  InputContainer,
-  Button,
-  Text,
-  InputView,
-} from "./styles";
+import { Container, Tittle, InputContainer, Button, InputView } from "./styles";
 
 export default function DeposityScreenEdit() {
   const [loading, setLoading] = React.useState(false);
@@ -32,17 +25,17 @@ export default function DeposityScreenEdit() {
 
   const navigate = useNavigate();
 
-  async function createDeposity() {
+  async function editDeposity() {
     setLoading(true);
-    const body = {
-      value,
-      description,
-      type: "deposity",
-    };
+
+    if (valueEdit === value && descriptionEdit === description) {
+      alert("Nenhuma informação foi modificada");
+      setLoading(false);
+      return;
+    }
 
     try {
-      let response = await postTransition(body, token);
-      console.log(response);
+      await editTransition(idEdit, value, description, token);
       setLoading(false);
       navigate("/home");
     } catch (error) {
@@ -60,7 +53,7 @@ export default function DeposityScreenEdit() {
   useEffect(() => {
     setValue(valueEdit);
     setDescription(descriptionEdit);
-  }, []);
+  }, [descriptionEdit, valueEdit]);
 
   return (
     <Container>
@@ -84,7 +77,7 @@ export default function DeposityScreenEdit() {
         />
         <Button
           onClick={() => {
-            createDeposity();
+            editDeposity();
           }}
         >
           {loading ? (
