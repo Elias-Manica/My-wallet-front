@@ -12,6 +12,8 @@ import SingUpScreen from "./SingUpScreen/SingUpScreen";
 import HomeScreen from "./HomeScreen/HomeScreen";
 import NewDeposityScreen from "./NewDeposityScreen/NewDeposityScreen";
 import WithdrawScreen from "./WithdrawScreen/WithdrawScreen";
+import DeposityScreenEdit from "./DeposityScreenEdit/DeposityScreenEdit";
+import WithdrawScreenEdit from "./WithdrawScreenEdit/WithdrawScreen";
 
 import { GlobalStyle } from "../assets/css/GlobalStyle";
 
@@ -45,10 +47,26 @@ export default function App() {
                 }
               />
               <Route
+                path="/editar-deposito"
+                element={
+                  <PrivatePage>
+                    <DeposityScreenEdit />
+                  </PrivatePage>
+                }
+              />
+              <Route
                 path="/saque"
                 element={
                   <PrivatePage>
                     <WithdrawScreen />
+                  </PrivatePage>
+                }
+              />
+              <Route
+                path="/editar-saque"
+                element={
+                  <PrivatePage>
+                    <WithdrawScreenEdit />
                   </PrivatePage>
                 }
               />

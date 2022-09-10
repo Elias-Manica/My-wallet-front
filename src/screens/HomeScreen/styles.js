@@ -169,6 +169,7 @@ export const WithdrawText = styled.text`
 
 export const TittleDescription = styled.div`
   width: 70%;
+  cursor: pointer;
 `;
 
 export const BalanceContainer = styled.div`

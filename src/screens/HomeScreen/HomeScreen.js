@@ -94,6 +94,14 @@ export default function HomeScreen() {
     }
   }
 
+  function navigateToEditPage(type) {
+    if (type === "deposity") {
+      navigate("/editar-deposito");
+    } else {
+      navigate("/editar-saque");
+    }
+  }
+
   useEffect(() => {
     getBalance();
     getTransition();
@@ -140,7 +148,9 @@ export default function HomeScreen() {
           <BoxHistoryDontEmpty>
             {transitionUser.map((item) => (
               <TextBank>
-                <TittleDescription>
+                <TittleDescription
+                  onClick={() => navigateToEditPage(item.type)}
+                >
                   <DateText>{item.date}</DateText>
                   <Text>{item.description}</Text>
                 </TittleDescription>
