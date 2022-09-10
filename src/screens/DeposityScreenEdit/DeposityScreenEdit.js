@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import TokenAuth from "../../contexts/tokenContext";
+import ValueAuth from "../../contexts/valueTransitionEdit";
+import DescriptionAuth from "../../contexts/descriptionTransitionEdit";
+import IdAuth from "../../contexts/idTransitionEdit";
 
 import { postTransition } from "../../services/requests";
 
@@ -23,6 +26,9 @@ export default function DeposityScreenEdit() {
   const [description, setDescription] = React.useState("");
 
   const { token } = React.useContext(TokenAuth);
+  const { valueEdit } = React.useContext(ValueAuth);
+  const { descriptionEdit } = React.useContext(DescriptionAuth);
+  const { idEdit } = React.useContext(IdAuth);
 
   const navigate = useNavigate();
 
@@ -50,6 +56,11 @@ export default function DeposityScreenEdit() {
       alert("Requisição errada, tente mais tarde");
     }
   }
+
+  useEffect(() => {
+    setValue(valueEdit);
+    setDescription(descriptionEdit);
+  }, []);
 
   return (
     <Container>

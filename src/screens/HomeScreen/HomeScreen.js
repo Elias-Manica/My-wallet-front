@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import NameAuth from "../../contexts/nameContext";
 import TokenAuth from "../../contexts/tokenContext";
+import ValueAuth from "../../contexts/valueTransitionEdit";
+import IdAuth from "../../contexts/idTransitionEdit";
+import DescriptionAuth from "../../contexts/descriptionTransitionEdit";
 
 import {
   getBalanceUser,
@@ -42,6 +45,9 @@ export default function HomeScreen() {
 
   const { nameUser, setNameUser } = React.useContext(NameAuth);
   const { token } = React.useContext(TokenAuth);
+  const { setValueEdit } = React.useContext(ValueAuth);
+  const { setDescriptionEdit } = React.useContext(DescriptionAuth);
+  const { setIdEdit } = React.useContext(IdAuth);
 
   const navigate = useNavigate();
 
@@ -94,10 +100,16 @@ export default function HomeScreen() {
     }
   }
 
-  function navigateToEditPage(type) {
+  function navigateToEditPage(type, value, description, id) {
     if (type === "deposity") {
+      setValueEdit(value);
+      setDescriptionEdit(description);
+      setIdEdit(id);
       navigate("/editar-deposito");
     } else {
+      setValueEdit(value);
+      setDescriptionEdit(description);
+      setIdEdit(id);
       navigate("/editar-saque");
     }
   }
@@ -149,7 +161,14 @@ export default function HomeScreen() {
             {transitionUser.map((item) => (
               <TextBank>
                 <TittleDescription
-                  onClick={() => navigateToEditPage(item.type)}
+                  onClick={() =>
+                    navigateToEditPage(
+                      item.type,
+                      item.value,
+                      item.description,
+                      item._id
+                    )
+                  }
                 >
                   <DateText>{item.date}</DateText>
                   <Text>{item.description}</Text>
