@@ -58,7 +58,7 @@ export const Button = styled.button`
   margin-right: auto;
 `;
 
-export const Text = styled.h2`
+export const TextSingUp = styled.h2`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 700;

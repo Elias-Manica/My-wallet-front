@@ -125,7 +125,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Text = styled.text`
+export const TextDescription = styled.text`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;

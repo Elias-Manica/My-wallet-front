@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ import {
   BoxHistoryEmpty,
   Button,
   ButtonContainer,
-  Text,
+  TextDescription,
   DeposityText,
   WithdrawText,
   DateText,
@@ -51,7 +51,7 @@ export default function HomeScreen() {
 
   const navigate = useNavigate();
 
-  async function getBalance() {
+  const getBalance = useCallback(async () => {
     try {
       let response = await getBalanceUser(token);
       setNameUser(response.data.name);
@@ -59,16 +59,16 @@ export default function HomeScreen() {
     } catch (error) {
       alert("Requisição errada, tente mais tarde");
     }
-  }
+  }, [setNameUser, token]);
 
-  async function getTransition() {
+  const getTransition = useCallback(async () => {
     try {
       let response = await getTransitionUser(token);
       setTransitionUser(response.data);
     } catch (error) {
       alert("Problema ao pegar suas transações, tente mais tarde");
     }
-  }
+  }, [token]);
 
   async function functionsingOut() {
     try {
@@ -110,7 +110,7 @@ export default function HomeScreen() {
   useEffect(() => {
     getBalance();
     getTransition();
-  }, []);
+  }, [getBalance, getTransition]);
 
   return (
     <Container>
@@ -151,8 +151,8 @@ export default function HomeScreen() {
             </ShowBalance>
           </BalanceContainer>
           <BoxHistoryDontEmpty>
-            {transitionUser.map((item) => (
-              <TextBank>
+            {transitionUser.map((item, index) => (
+              <TextBank key={index}>
                 <TittleDescription
                   onClick={() =>
                     navigateToEditPage(
@@ -164,7 +164,7 @@ export default function HomeScreen() {
                   }
                 >
                   <DateText>{item.date}</DateText>
-                  <Text>{item.description}</Text>
+                  <TextDescription>{item.description}</TextDescription>
                 </TittleDescription>
                 {item.type === "withdraw" ? (
                   <DivValues>

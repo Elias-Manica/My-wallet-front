@@ -10,7 +10,7 @@ import {
   Tittle,
   InputContainer,
   Button,
-  Text,
+  TextSingIn,
   Form,
 } from "./styles";
 
@@ -108,13 +108,13 @@ export default function SingUpScreen() {
           )}
         </Button>
       </Form>
-      <Text
+      <TextSingIn
         onClick={() => {
           navigate("/");
         }}
       >
         Já tem uma conta? Entre agora!
-      </Text>
+      </TextSingIn>
     </Container>
   );
 }

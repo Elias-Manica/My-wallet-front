@@ -64,14 +64,3 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
 `;
-
-export const Text = styled.h2`
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 18px;
-  margin-top: 40px;
-  cursor: pointer;
-  color: #ffffff;
-`;

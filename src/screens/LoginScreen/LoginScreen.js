@@ -12,7 +12,7 @@ import {
   Tittle,
   InputContainer,
   Button,
-  Text,
+  TextSingUp,
   Form,
 } from "./styles";
 
@@ -83,13 +83,13 @@ export default function LoginScreen() {
           )}
         </Button>
       </Form>
-      <Text
+      <TextSingUp
         onClick={() => {
           navigate("/cadastro");
         }}
       >
         Primeira vez? Cadastre-se!
-      </Text>
+      </TextSingUp>
     </Container>
   );
 }

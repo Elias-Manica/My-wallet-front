@@ -65,17 +65,6 @@ export const Button = styled.button`
   align-items: center;
 `;
 
-export const Text = styled.h2`
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 18px;
-  margin-top: 40px;
-  cursor: pointer;
-  color: #ffffff;
-`;
-
 export const Form = styled.form`
   width: 100%;
   margin-left: auto;
