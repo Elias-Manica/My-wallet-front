@@ -60,6 +60,9 @@ export const Button = styled.button`
   line-height: 23px;
   cursor: pointer;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Text = styled.h2`

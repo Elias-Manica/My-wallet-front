@@ -36,8 +36,22 @@ export default function App() {
                   </PrivatePage>
                 }
               />
-              <Route path="/deposito" element={<NewDeposityScreen />} />
-              <Route path="/saque" element={<WithdrawScreen />} />
+              <Route
+                path="/deposito"
+                element={
+                  <PrivatePage>
+                    <NewDeposityScreen />
+                  </PrivatePage>
+                }
+              />
+              <Route
+                path="/saque"
+                element={
+                  <PrivatePage>
+                    <WithdrawScreen />
+                  </PrivatePage>
+                }
+              />
             </Routes>
           </BrowserRouter>
         </NameAuth.Provider>

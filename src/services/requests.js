@@ -69,6 +69,18 @@ async function singOut(token) {
   return promise;
 }
 
+async function deleteTransition(idTransition, token) {
+  const promise = await axios.delete(`${Base_URL}/transition`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      id: idTransition,
+    },
+  });
+  return promise;
+}
+
 export {
   login,
   singUp,
@@ -77,4 +89,5 @@ export {
   postTransition,
   postWithDrawn,
   singOut,
+  deleteTransition,
 };

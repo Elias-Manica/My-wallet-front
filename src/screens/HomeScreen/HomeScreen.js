@@ -9,6 +9,7 @@ import {
   getBalanceUser,
   getTransitionUser,
   singOut,
+  deleteTransition,
 } from "../../services/requests";
 
 import {
@@ -30,6 +31,8 @@ import {
   ShowIcon,
   HiddenBalance,
   NameUserContainer,
+  DivValues,
+  IconDelete,
 } from "./styles";
 
 export default function HomeScreen() {
@@ -71,6 +74,20 @@ export default function HomeScreen() {
       console.log(response);
       localStorage.removeItem("mywallet");
       navigate("/");
+    } catch (error) {
+      console.log(error);
+      alert(`${error.response.data.message}`);
+    }
+  }
+
+  async function deleteTransitionFunction(id) {
+    console.log(token);
+    try {
+      let response = await deleteTransition(id, token);
+      console.log(response);
+      getBalance();
+      getTransition();
+      alert("Transição deletada");
     } catch (error) {
       console.log(error);
       alert(`${error.response.data.message}`);
@@ -128,9 +145,39 @@ export default function HomeScreen() {
                   <Text>{item.description}</Text>
                 </TittleDescription>
                 {item.type === "withdraw" ? (
-                  <DeposityText>R$ {item.value}</DeposityText>
+                  <DivValues>
+                    <DeposityText>R$ {item.value}</DeposityText>
+                    <IconDelete
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Você realmente quer excluir essa transição?"
+                          )
+                        ) {
+                          deleteTransitionFunction(item._id);
+                        }
+                      }}
+                    >
+                      <ion-icon name="close-outline"></ion-icon>
+                    </IconDelete>
+                  </DivValues>
                 ) : (
-                  <WithdrawText>R$ {item.value}</WithdrawText>
+                  <DivValues>
+                    <WithdrawText>R$ {item.value}</WithdrawText>
+                    <IconDelete
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Você realmente quer excluir essa transição?"
+                          )
+                        ) {
+                          deleteTransitionFunction(item._id);
+                        }
+                      }}
+                    >
+                      <ion-icon name="close-outline"></ion-icon>
+                    </IconDelete>
+                  </DivValues>
                 )}
               </TextBank>
             ))}

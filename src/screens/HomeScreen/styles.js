@@ -216,3 +216,13 @@ export const HiddenBalance = styled.div`
   margin-left: 10px;
   border-radius: 5px;
 `;
+
+export const DivValues = styled.div`
+  display: flex;
+
+  align-items: center;
+`;
+
+export const IconDelete = styled.div`
+  cursor: pointer;
+`;

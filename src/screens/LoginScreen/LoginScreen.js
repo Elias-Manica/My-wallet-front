@@ -75,7 +75,7 @@ export default function LoginScreen() {
           required
           color={loading ? "#F2F2F2" : "#FFFFF"}
         />
-        <Button onClick={handleSubmit}>
+        <Button>
           {loading ? (
             <ThreeDots color="white" height={40} width={40} />
           ) : (
