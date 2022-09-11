@@ -38,6 +38,8 @@ import {
   IconDelete,
 } from "./styles";
 
+import Swal from "sweetalert2";
+
 export default function HomeScreen() {
   const [showBalance, setShowBalance] = React.useState(false);
   const [balanceUser, setBalanceUser] = React.useState("");
@@ -57,7 +59,7 @@ export default function HomeScreen() {
       setNameUser(response.data.name);
       setBalanceUser(response.data.balance);
     } catch (error) {
-      alert("Requisição errada, tente mais tarde");
+      Swal.fire("Requisição errada, tente mais tarde", "erro!", "question");
     }
   }, [setNameUser, token]);
 
@@ -66,7 +68,11 @@ export default function HomeScreen() {
       let response = await getTransitionUser(token);
       setTransitionUser(response.data);
     } catch (error) {
-      alert("Problema ao pegar suas transações, tente mais tarde");
+      Swal.fire(
+        "Problema ao pegar suas transações, tente mais tarde",
+        "erro!",
+        "question"
+      );
     }
   }, [token]);
 
@@ -77,7 +83,7 @@ export default function HomeScreen() {
       localStorage.removeItem("mywallet");
       navigate("/");
     } catch (error) {
-      alert(`${error.response.data.message}`);
+      Swal.fire(`${error.response.data.message}`, "erro!", "error");
     }
   }
 
@@ -87,9 +93,9 @@ export default function HomeScreen() {
 
       getBalance();
       getTransition();
-      alert("Transição deletada");
+      Swal.fire("Transição deletada", "sucesso!", "success");
     } catch (error) {
-      alert(`${error.response.data.message}`);
+      Swal.fire(`${error.response.data.message}`, "erro!", "error");
     }
   }
 
@@ -118,9 +124,19 @@ export default function HomeScreen() {
         <NameUserContainer>Olá, {nameUser}!</NameUserContainer>
         <Icon
           onClick={() => {
-            if (window.confirm("Você realmente quer sair?")) {
-              functionsingOut();
-            }
+            Swal.fire({
+              title: "Você realmente quer sair?",
+              text: "Você poderá entrar depois novamente",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sim, quero sair!",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                functionsingOut();
+              }
+            });
           }}
         >
           <ion-icon name="exit-outline"></ion-icon>
@@ -171,13 +187,19 @@ export default function HomeScreen() {
                     <DeposityText>R$ {item.value}</DeposityText>
                     <IconDelete
                       onClick={() => {
-                        if (
-                          window.confirm(
-                            "Você realmente quer excluir essa transição?"
-                          )
-                        ) {
-                          deleteTransitionFunction(item._id);
-                        }
+                        Swal.fire({
+                          title: "Você tem certeza que deseja excluir?",
+                          text: "Você não consiguira reverter!",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#3085d6",
+                          cancelButtonColor: "#d33",
+                          confirmButtonText: "Sim, delete!",
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            deleteTransitionFunction(item._id);
+                          }
+                        });
                       }}
                     >
                       <ion-icon name="close-outline"></ion-icon>
@@ -188,13 +210,19 @@ export default function HomeScreen() {
                     <WithdrawText>R$ {item.value}</WithdrawText>
                     <IconDelete
                       onClick={() => {
-                        if (
-                          window.confirm(
-                            "Você realmente quer excluir essa transição?"
-                          )
-                        ) {
-                          deleteTransitionFunction(item._id);
-                        }
+                        Swal.fire({
+                          title: "Você tem certeza que deseja excluir?",
+                          text: "Você não consiguira reverter!",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#3085d6",
+                          cancelButtonColor: "#d33",
+                          confirmButtonText: "Sim, delete!",
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            deleteTransitionFunction(item._id);
+                          }
+                        });
                       }}
                     >
                       <ion-icon name="close-outline"></ion-icon>

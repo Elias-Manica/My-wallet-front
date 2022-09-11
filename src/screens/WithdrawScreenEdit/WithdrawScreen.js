@@ -13,6 +13,8 @@ import { ThreeDots } from "react-loader-spinner";
 
 import { Container, Tittle, InputContainer, Button, InputView } from "./styles";
 
+import Swal from "sweetalert2";
+
 export default function WithdrawScreenEdit() {
   const [loading, setLoading] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -29,7 +31,7 @@ export default function WithdrawScreenEdit() {
     setLoading(true);
 
     if (valueEdit === value && descriptionEdit === description) {
-      alert("Nenhuma informação foi modificada");
+      Swal.fire("Nenhuma informação foi modificada", "erro!", "warning");
       setLoading(false);
       return;
     }
@@ -41,13 +43,12 @@ export default function WithdrawScreenEdit() {
       navigate("/home");
     } catch (error) {
       if (error.response.data.length > 0) {
-        alert(`${error.response.data}`);
+        Swal.fire(`${error.response.data}`, "erro!", "error");
         setLoading(false);
         return;
       }
-      alert(`${error.response.data.message}`);
+      Swal.fire(`${error.response.data.message}`, "erro!", "error");
       setLoading(false);
-      alert("Requisição errada, tente mais tarde");
     }
   }
 
@@ -58,7 +59,7 @@ export default function WithdrawScreenEdit() {
 
   return (
     <Container>
-      <Tittle>Atualizar saída</Tittle>
+      <Tittle>Editar saída</Tittle>
       <InputView>
         <InputContainer
           placeholder="Valor"

@@ -10,6 +10,8 @@ import { ThreeDots } from "react-loader-spinner";
 
 import { Container, Tittle, InputContainer, Button, InputView } from "./styles";
 
+import Swal from "sweetalert2";
+
 export default function WithdrawScreen() {
   const [loading, setLoading] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -34,13 +36,12 @@ export default function WithdrawScreen() {
       navigate("/home");
     } catch (error) {
       if (error.response.data.length > 0) {
-        alert(`${error.response.data}`);
+        Swal.fire(`${error.response.data}`, "erro!", "error");
         setLoading(false);
         return;
       }
-      alert(`${error.response.data.message}`);
+      Swal.fire(`${error.response.data.message}`, "erro!", "error");
       setLoading(false);
-      alert("Requisição errada, tente mais tarde");
     }
   }
 

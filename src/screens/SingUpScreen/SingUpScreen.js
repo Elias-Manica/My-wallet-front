@@ -14,6 +14,8 @@ import {
   Form,
 } from "./styles";
 
+import Swal from "sweetalert2";
+
 export default function SingUpScreen() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -28,7 +30,7 @@ export default function SingUpScreen() {
     setLoading(true);
 
     if (password !== confirmPass) {
-      alert("Senhas diferentes");
+      Swal.fire("Senhas diferentes", "erro", "warning");
       setLoading(false);
       setEmail("");
       setConfirmPass("");
@@ -39,12 +41,11 @@ export default function SingUpScreen() {
 
     try {
       let response = await singUp({ name, email, password });
-      alert(`${response.data.message}`);
+      Swal.fire(`${response.data.message}`, "sucesso!", "success");
       navigate("/");
     } catch (error) {
       if (error.response.data.length > 0) {
-        //lembrar de passar para portugues ou colocar joi direto nos inputs
-        alert(`${error.response.data}`);
+        Swal.fire(`${error.response.data}`, "erro", "error");
         setLoading(false);
         setEmail("");
         setConfirmPass("");
@@ -52,7 +53,7 @@ export default function SingUpScreen() {
         setPassword("");
         return;
       }
-      alert(`${error.response.data.message}`);
+      Swal.fire(`${error.response.data.message}`, "erro", "error");
       setLoading(false);
       setEmail("");
       setConfirmPass("");

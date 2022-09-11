@@ -16,6 +16,8 @@ import {
   Form,
 } from "./styles";
 
+import Swal from "sweetalert2";
+
 export default function LoginScreen() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -39,13 +41,13 @@ export default function LoginScreen() {
       navigate("/home");
     } catch (error) {
       if (error.response.data.length > 0) {
-        alert(`${error.response.data}`);
+        Swal.fire(`${error.response.data}`, "erro!", "error");
         setLoading(false);
         setEmail("");
         setPassword("");
         return;
       }
-      alert(`${error.response.data.message}`);
+      Swal.fire(`${error.response.data.message}`, "erro!", "error");
       setLoading(false);
       setEmail("");
 

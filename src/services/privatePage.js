@@ -4,6 +4,8 @@ import { useContext } from "react";
 
 import TokenAuth from "../contexts/tokenContext";
 
+import { View, Button } from "./styles";
+
 export default function PrivatePage({ children }) {
   const auth = JSON.parse(localStorage.getItem("mywallet"));
   const { token } = useContext(TokenAuth);
@@ -14,10 +16,10 @@ export default function PrivatePage({ children }) {
     return <>{children}</>;
   } else {
     return (
-      <>
-        <h1>SEM ACESSO</h1>
-        <button onClick={() => navigate("/")}></button>
-      </>
+      <View>
+        <h1>Você foi desconectado, faça login novamente</h1>
+        <Button onClick={() => navigate("/")}>Clique aqui</Button>
+      </View>
     );
   }
 }
