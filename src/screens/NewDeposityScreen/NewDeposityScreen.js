@@ -23,8 +23,9 @@ export default function NewDeposityScreen() {
 
   async function createDeposity() {
     setLoading(true);
+
     const body = {
-      value,
+      value: value.replace(",", "."),
       description,
       type: "deposity",
     };

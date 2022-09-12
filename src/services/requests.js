@@ -84,7 +84,7 @@ async function deleteTransition(idTransition, token) {
 async function editTransition(idTransition, valueEdit, descriptionEdit, token) {
   const body = {
     id: idTransition,
-    value: valueEdit,
+    value: valueEdit.replace(",", "."),
     description: descriptionEdit,
   };
 

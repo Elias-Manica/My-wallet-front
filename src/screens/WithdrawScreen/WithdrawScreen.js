@@ -24,7 +24,7 @@ export default function WithdrawScreen() {
   async function createDeposity() {
     setLoading(true);
     const body = {
-      value,
+      value: value.replace(",", "."),
       description,
       type: "withdraw",
     };

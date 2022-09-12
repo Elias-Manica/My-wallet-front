@@ -148,7 +148,7 @@ export default function HomeScreen() {
             <h1>Saldo disponível:</h1>
             <ShowBalance>
               {showBalance ? (
-                <h1>R$ {balanceUser}</h1>
+                <h1>R$ {balanceUser.toFixed(2).replace(".", ",")}</h1>
               ) : (
                 <h1>R$ {<HiddenBalance></HiddenBalance>}</h1>
               )}
@@ -184,7 +184,9 @@ export default function HomeScreen() {
                 </TittleDescription>
                 {item.type === "withdraw" ? (
                   <DivValues>
-                    <DeposityText>R$ {item.value}</DeposityText>
+                    <DeposityText>
+                      R$ {Number(item.value).toFixed(2).replace(".", ",")}
+                    </DeposityText>
                     <IconDelete
                       onClick={() => {
                         Swal.fire({
@@ -207,7 +209,9 @@ export default function HomeScreen() {
                   </DivValues>
                 ) : (
                   <DivValues>
-                    <WithdrawText>R$ {item.value}</WithdrawText>
+                    <WithdrawText>
+                      R$ {Number(item.value).toFixed(2).replace(".", ",")}
+                    </WithdrawText>
                     <IconDelete
                       onClick={() => {
                         Swal.fire({
