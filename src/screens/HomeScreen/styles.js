@@ -125,18 +125,18 @@ export const Button = styled.button`
   }
 `;
 
-export const TextDescription = styled.text`
+export const TextDescription = styled.h6`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  margin-right: 8px;
+
   color: #000000;
   width: 50%;
 `;
 
-export const DateText = styled.text`
+export const DateText = styled.h6`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;
@@ -146,7 +146,7 @@ export const DateText = styled.text`
   color: #c6c6c6;
 `;
 
-export const DeposityText = styled.text`
+export const DeposityText = styled.h6`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;
@@ -157,7 +157,7 @@ export const DeposityText = styled.text`
   margin-right: 15px;
 `;
 
-export const WithdrawText = styled.text`
+export const WithdrawText = styled.h6`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;
@@ -169,6 +169,9 @@ export const WithdrawText = styled.text`
 
 export const TittleDescription = styled.div`
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const BalanceContainer = styled.div`
