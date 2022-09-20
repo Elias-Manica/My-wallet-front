@@ -4,7 +4,7 @@ A responsive website that simulates a wallet to help you control your finances.
 
 //<center><img src="https://user-images.githubusercontent.com/103606213/187323116-c5047013-2a62-4ef8-b4ac-57f1ff28a966.gif"></center>
 
-//Try it out now at https://cine-flex-liard.vercel.app/
+//Try it out now at (link)
 
 ## About this Project
 
