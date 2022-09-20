@@ -170,7 +170,6 @@ export const WithdrawText = styled.h6`
 export const TittleDescription = styled.div`
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
 `;
 
