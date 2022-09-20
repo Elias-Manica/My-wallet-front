@@ -36,7 +36,10 @@ import {
   NameUserContainer,
   DivValues,
   IconDelete,
+  Image,
 } from "./styles";
+
+import loadingGif from "../../assets/image/loading-gif.gif";
 
 import Swal from "sweetalert2";
 
@@ -44,6 +47,7 @@ export default function HomeScreen() {
   const [showBalance, setShowBalance] = React.useState(false);
   const [balanceUser, setBalanceUser] = React.useState("");
   const [transitionUser, setTransitionUser] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const { nameUser, setNameUser } = React.useContext(NameAuth);
   const { token } = React.useContext(TokenAuth);
@@ -64,15 +68,18 @@ export default function HomeScreen() {
   }, [setNameUser, token]);
 
   const getTransition = useCallback(async () => {
+    setLoading(true);
     try {
       let response = await getTransitionUser(token);
       setTransitionUser(response.data);
+      setLoading(false);
     } catch (error) {
       Swal.fire(
         "Problema ao pegar suas transações, tente mais tarde",
         "erro!",
         "question"
       );
+      setLoading(false);
     }
   }, [token]);
 
@@ -142,7 +149,12 @@ export default function HomeScreen() {
           <ion-icon name="exit-outline"></ion-icon>
         </Icon>
       </Header>
-      {transitionUser.length > 0 ? (
+      {loading ? (
+        <>
+          <BoxHistoryDontEmpty />
+          <Image src={loadingGif} />
+        </>
+      ) : transitionUser.length > 0 ? (
         <>
           <BalanceContainer>
             <h1>Saldo disponível:</h1>

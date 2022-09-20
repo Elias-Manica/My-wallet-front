@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Base_URL = "http://localhost:5000";
+const Base_URL = "https://my-wallet-elias-manica.herokuapp.com";
 
 async function login(body) {
   const promise = await axios.post(`${Base_URL}/login`, body);

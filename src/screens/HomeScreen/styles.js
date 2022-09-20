@@ -229,3 +229,10 @@ export const DivValues = styled.div`
 export const IconDelete = styled.div`
   cursor: pointer;
 `;
+
+export const Image = styled.img`
+  width: 10%;
+  position: fixed;
+  top: 40%;
+  left: 45%;
+`;
