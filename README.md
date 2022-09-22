@@ -20,7 +20,9 @@ This is a Single-Page Application that simulates a wallet. Below are the impleme
 
 This project was made to be part of my GitHub portfolio.
 
-This web site was my first project full stack! 
+This web site was my first project Full Stack using MongoDB!
+
+The Back-end can be found here: https://github.com/Elias-Manica/My-wallet-back
 
 I will be happy if you can give me some feedback on the code, layout or anything you think could have been better in the project.
 
